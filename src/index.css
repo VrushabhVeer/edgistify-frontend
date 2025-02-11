@@ -1,0 +1,7 @@
+body {
+    font-family: "Barlow", serif;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
