@@ -25,7 +25,7 @@ A full-stack e-commerce platform built using **MERN stack (MongoDB, Express, Rea
   | ![signu](https://github.com/user-attachments/assets/9ca5ab2e-a25c-4130-a80b-1d48fc44c704) | ![placed](https://github.com/user-attachments/assets/6133cc5a-7120-49dd-a98d-928f86501bbc) |
 
 
-## ✅ Want to Check application:
+## ✅ Want to Check the application:
 ### Credentials for login:
 - email: admin@email.com
 - password: 123456
