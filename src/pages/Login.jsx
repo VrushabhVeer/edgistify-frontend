@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { login } from "../api/apis";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,31 +12,19 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      email,
-      password,
-    };
-
     try {
-      const response = await axios.post(
-        "http://localhost:8000/user/login",
-        payload
-      );
-      const { token, userId } = response.data;
+      const response = await login({ email, password });
+      const { token, userId, message } = response.data;
 
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
 
-      toast.success(response.data.message);
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      toast.success(message);
+      setTimeout(() => navigate("/"), 2000);
     } catch (error) {
-      if (axios.isAxiosError(error) && error.response) {
-        toast.error(error.response.data.message);
-      } else {
-        toast.error("An unexpected error occurred");
-      }
+      toast.error(
+        error?.response?.data?.message || "An unexpected error occurred"
+      );
     }
   };
 

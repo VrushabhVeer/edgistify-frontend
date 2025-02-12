@@ -15,11 +15,11 @@ api.interceptors.request.use((config) => {
 });
 
 export const login = async (credentials) => {
-  return await api.post("/auth/login", credentials);
+  return await api.post("/user/login", credentials);
 };
 
 export const signup = async (userData) => {
-  return await api.post("/auth/signup", userData);
+  return await api.post("/user/signup", userData);
 };
 
 export const getProducts = async () => {
