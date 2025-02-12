@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login } from "../api/apis";
 
@@ -8,6 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,9 +19,10 @@ const Login = () => {
 
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
-
       toast.success(message);
-      setTimeout(() => navigate("/"), 2000);
+
+      const redirectTo = location.state?.from?.pathname || "/";
+      setTimeout(() => navigate(redirectTo), 2000);
     } catch (error) {
       toast.error(
         error?.response?.data?.message || "An unexpected error occurred"
